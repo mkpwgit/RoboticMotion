@@ -35,7 +35,7 @@ public class RightToGoalState implements State {
 
     @Override
     public State getState(Robot robot) {
-        int di = 6;
+        int di = 9;
         if (number + di > line.size()) {
             di = line.size() - number;
         }

@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class ObstacleBoundaryState implements State {
 
-    private int degrees = 10;
+    private int degrees = 3;
     private List<Coordinate> line;
     private int number = 0;
 

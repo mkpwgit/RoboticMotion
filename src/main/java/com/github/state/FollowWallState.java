@@ -24,6 +24,7 @@ public class FollowWallState implements State {
 
     private Direction wallDirection;
     private int stepOut = 0;
+    private boolean isChangedDirection = false;
 
     public FollowWallState(Robot robot) {
         if (RGBColor.getColor(ImagePanel.image.getRGB(robot.getX() - 40, robot.getY())) == RGBColor.BLACK) {
@@ -71,9 +72,11 @@ public class FollowWallState implements State {
             hasWall = true;
         }
 
-        if (!hasWall) {
+        if (!hasWall && !isChangedDirection) {
             stepOut++;
         }
+
+        isChangedDirection = false;
 
         if (stepOut < 1) {
             return this;
@@ -111,7 +114,8 @@ public class FollowWallState implements State {
             case NORTH:
                 wallDirection = EAST;
                 break;
-
         }
+
+        isChangedDirection = true;
     }
 }
