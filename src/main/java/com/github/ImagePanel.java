@@ -1,6 +1,7 @@
 package com.github;
 
 import com.github.robot.*;
+import com.github.robot.Robot;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -19,35 +20,32 @@ import java.io.IOException;
 public class ImagePanel
         extends JPanel {
 
+    public static final String IMAGE_PATH = "/home/mikalai/space4.bmp";
+
     private static int WIDTH = 1024;
     private static int HEIGHT = 768;
 
-    public static int AIM_X = 820;
-    public static int AIM_Y = 590;
-//    public static int AIM_Y = 390;
+    public static int GOAL_X = 820;
+    public static int GOAL_Y = 590;
 
-    private com.github.robot.Robot robot;
+    private Robot robot;
     private State state;
-
     private int[][] pixels = new int[WIDTH][HEIGHT];
-
-    int sensor = 30;
 
     public static BufferedImage image;
 
     public ImagePanel() {
         try {
-            image = ImageIO.read(new File("/home/mikalai/space4.bmp"));
+            image = ImageIO.read(new File(IMAGE_PATH));
             for (int i = 0; i < WIDTH; i++) {
                 for (int j = 0; j < HEIGHT; j++) {
                     pixels[i][j] = image.getRGB(i, j);
-                    checkColor(image.getRGB(i, j));
+                    checkImage(image.getRGB(i, j));
 
                 }
             }
-            robot = new com.github.robot.Robot();
-//            state = new RightToGoalState(robot);
-            state = new ObstacleBoundaryState(robot);
+            robot = new Robot();
+            state = new RightToGoalState(robot);
         } catch (IOException ex) {
             // handle exception...
         }
@@ -60,19 +58,29 @@ public class ImagePanel
         g.setColor(Color.red);
         g.fillOval(robot.getX(), robot.getY(), 20, 20);
         g.setColor(Color.BLUE);
-        g.fillOval(AIM_X, AIM_Y, 40, 40);
-        changeCoord();
+        g.fillOval(GOAL_X, GOAL_Y, 40, 40);
+        if (!goalIsReached()) {
+            changeCoord();
+        }
     }
 
     private void changeCoord() {
-        state = state.checkState(robot);
+        state = state.getState(robot);
         state.move(robot);
     }
 
-    private void checkColor(int rgbValue) {
+    private void checkImage(int rgbValue) {
         RGBColor rgbColor = RGBColor.getColor(rgbValue);
         if (rgbColor == null) {
             throw new RuntimeException("Incorrect picture!");
+        }
+    }
+
+    private boolean goalIsReached() {
+        if (Math.abs(robot.getX() - GOAL_X) <= 10 && Math.abs(robot.getY() - GOAL_Y) <= 10) {
+            return true;
+        } else {
+            return false;
         }
     }
 

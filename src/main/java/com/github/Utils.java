@@ -74,7 +74,7 @@ public class Utils {
     }
 
     public static List<Coordinate> determineLine(Robot robot) {
-        return determineLine(robot.getX(), robot.getY(), ImagePanel.AIM_X, ImagePanel.AIM_Y);
+        return determineLine(robot.getX(), robot.getY(), ImagePanel.GOAL_X, ImagePanel.GOAL_Y);
     }
 
 }

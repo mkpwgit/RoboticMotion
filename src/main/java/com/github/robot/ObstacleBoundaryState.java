@@ -22,7 +22,8 @@ public class ObstacleBoundaryState implements State {
     private int number = 0;
 
     public ObstacleBoundaryState(Robot robot) {
-
+        line = Utils.determineLine(robot);
+        number = 0;
     }
 
     @Override
@@ -83,7 +84,13 @@ public class ObstacleBoundaryState implements State {
     }
 
     @Override
-    public State checkState(Robot robot) {
+    public State getState(Robot robot) {
+        for (int i = number; i < number + 3; i++) {
+            if (RGBColor.getColor(ImagePanel.image.getRGB(line.get(i).getX(), line.get(i).getY())) == RGBColor.BLACK) {
+                return new FollowWallState(robot);
+            }
+        }
+
         return this;
     }
 
@@ -96,7 +103,7 @@ public class ObstacleBoundaryState implements State {
         Coordinate resultCoord = null;
         for (Coordinate coordinate : oCoords) {
             double dist = countDistance(robot.getX(), robot.getY(), coordinate.getX(), coordinate.getY());
-            dist += countDistance(coordinate.getX(), coordinate.getY(), ImagePanel.AIM_X, ImagePanel.AIM_Y);
+            dist += countDistance(coordinate.getX(), coordinate.getY(), ImagePanel.GOAL_X, ImagePanel.GOAL_Y);
             if (dist < minDistance) {
                 minDistance = dist;
                 resultCoord = coordinate;

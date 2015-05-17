@@ -29,12 +29,16 @@ public class RightToGoalState implements State {
         number++;
         robot.setX(line.get(number).getX());
         robot.setY(line.get(number).getY());
-        System.out.println("Right to goal. "+ robot);
+        System.out.println("Right to goal. " + robot);
     }
 
     @Override
-    public State checkState(Robot robot) {
-        for (int i = number; i < number + 6; i++) {
+    public State getState(Robot robot) {
+        int di = 6;
+        if (number + di > line.size()) {
+            di = line.size() - number;
+        }
+        for (int i = number; i < number + di; i++) {
             if (RGBColor.getColor(ImagePanel.image.getRGB(line.get(i).getX(), line.get(i).getY())) == RGBColor.BLACK) {
                 return new ObstacleBoundaryState(robot);
             }

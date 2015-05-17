@@ -9,12 +9,12 @@ package com.github.robot;
  */
 public class Robot {
 
-    public static int START_X = 20;
+    public static int START_X = 60;
     public static int START_Y = 20;
 
     private int x = START_X;
     private int y = START_Y;
-    private int sensor = 300;
+    private int sensor = 70;
 
     public int getX() {
         return x;

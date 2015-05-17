@@ -11,5 +11,5 @@ public interface State {
 
     public void move(Robot robot);
 
-    public State checkState(Robot robot);
+    public State getState(Robot robot);
 }
