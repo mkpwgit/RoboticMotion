@@ -14,15 +14,15 @@ import java.util.List;
  */
 public class Utils {
 
-    public static List<Coordinate> determineLine(Robot robot) {
+    public static List<Coordinate> determineLine(int startX, int startY, int endX, int endY) {
         List<Coordinate> line = new ArrayList<Coordinate>();
 
         int d = 10;
-        int tempX = robot.getX();
-        int tempY = robot.getY();
+        int tempX = startX;
+        int tempY = startY;
 
-        int w = ImagePanel.AIM_X - tempX;
-        int h = ImagePanel.AIM_Y - tempY;
+        int w = endX - tempX;
+        int h = endY - tempY;
         int dx1 = 0, dy1 = 0, dx2 = 0, dy2 = 0;
 
         if (w < 0) {
@@ -46,8 +46,8 @@ public class Utils {
         int longest = Math.abs(w / 10);
         int shortest = Math.abs(h / 10);
         if (!(longest > shortest)) {
-            longest = Math.abs(h);
-            shortest = Math.abs(w);
+            longest = Math.abs(h /10 );
+            shortest = Math.abs(w / 10);
             if (h < 0) {
                 dy2 = -d;
             } else if (h > 0) {
@@ -72,4 +72,9 @@ public class Utils {
 
         return line;
     }
+
+    public static List<Coordinate> determineLine(Robot robot) {
+        return determineLine(robot.getX(), robot.getY(), ImagePanel.AIM_X, ImagePanel.AIM_Y);
+    }
+
 }

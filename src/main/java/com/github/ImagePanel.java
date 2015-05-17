@@ -33,7 +33,7 @@ public class ImagePanel
 
     int sensor = 30;
 
-    private BufferedImage image;
+    public static BufferedImage image;
 
     public ImagePanel() {
         try {
@@ -46,7 +46,8 @@ public class ImagePanel
                 }
             }
             robot = new com.github.robot.Robot();
-            state = new RightToGoalState(robot);
+//            state = new RightToGoalState(robot);
+            state = new ObstacleBoundaryState(robot);
         } catch (IOException ex) {
             // handle exception...
         }
@@ -64,6 +65,7 @@ public class ImagePanel
     }
 
     private void changeCoord() {
+        state = state.checkState(robot);
         state.move(robot);
     }
 

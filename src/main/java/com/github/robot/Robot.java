@@ -14,6 +14,7 @@ public class Robot {
 
     private int x = START_X;
     private int y = START_Y;
+    private int sensor = 300;
 
     public int getX() {
         return x;
@@ -29,5 +30,21 @@ public class Robot {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public int getSensor() {
+        return sensor;
+    }
+
+    public void setSensor(int sensor) {
+        this.sensor = sensor;
+    }
+
+    @Override
+    public String toString() {
+        return "Robot{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }

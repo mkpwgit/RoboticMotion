@@ -1,8 +1,5 @@
 package com.github.robot;
 
-import com.github.robot.Robot;
-import com.github.robot.State;
-
 /**
  * <p>
  * </p>
@@ -15,5 +12,10 @@ public class FollowWallState implements State {
     @Override
     public void move(Robot robot) {
 
+    }
+
+    @Override
+    public State checkState(Robot robot) {
+        return null;
     }
 }

@@ -10,4 +10,6 @@ package com.github.robot;
 public interface State {
 
     public void move(Robot robot);
+
+    public State checkState(Robot robot);
 }
