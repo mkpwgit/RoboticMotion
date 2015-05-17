@@ -1,7 +1,6 @@
 package com.github;
 
-import com.github.robot.*;
-import com.github.robot.Robot;
+import com.github.state.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -56,7 +55,7 @@ public class ImagePanel
         super.paintComponent(g);
         g.drawImage(image, 0, 0, null);
         g.setColor(Color.red);
-        g.fillOval(robot.getX(), robot.getY(), 20, 20);
+        g.fillOval(robot.getX()-20, robot.getY()-20, 20, 20);
         g.setColor(Color.BLUE);
         g.fillOval(GOAL_X, GOAL_Y, 40, 40);
         if (!goalIsReached()) {
@@ -77,7 +76,7 @@ public class ImagePanel
     }
 
     private boolean goalIsReached() {
-        if (Math.abs(robot.getX() - GOAL_X) <= 10 && Math.abs(robot.getY() - GOAL_Y) <= 10) {
+        if (Math.abs(robot.getX() - GOAL_X) <= 5 && Math.abs(robot.getY() - GOAL_Y) <= 5) {
             return true;
         } else {
             return false;

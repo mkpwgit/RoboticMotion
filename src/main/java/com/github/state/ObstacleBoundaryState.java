@@ -1,8 +1,9 @@
-package com.github.robot;
+package com.github.state;
 
 import com.github.Coordinate;
 import com.github.ImagePanel;
 import com.github.RGBColor;
+import com.github.Robot;
 import com.github.Utils;
 
 import java.util.ArrayList;

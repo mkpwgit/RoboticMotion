@@ -1,4 +1,6 @@
-package com.github.robot;
+package com.github.state;
+
+import com.github.Robot;
 
 /**
  * <p>

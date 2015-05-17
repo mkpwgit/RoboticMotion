@@ -1,16 +1,17 @@
-package com.github.robot;
+package com.github.state;
 
 import com.github.Coordinate;
 import com.github.ImagePanel;
 import com.github.RGBColor;
+import com.github.Robot;
 import com.github.Utils;
 
 import java.util.List;
 
-import static com.github.robot.FollowWallState.Direction.EAST;
-import static com.github.robot.FollowWallState.Direction.NORTH;
-import static com.github.robot.FollowWallState.Direction.SOUTH;
-import static com.github.robot.FollowWallState.Direction.WEST;
+import static com.github.state.FollowWallState.Direction.EAST;
+import static com.github.state.FollowWallState.Direction.NORTH;
+import static com.github.state.FollowWallState.Direction.SOUTH;
+import static com.github.state.FollowWallState.Direction.WEST;
 
 /**
  * <p>
@@ -74,7 +75,7 @@ public class FollowWallState implements State {
             stepOut++;
         }
 
-        if (stepOut < 2) {
+        if (stepOut < 1) {
             return this;
         } else {
             List<Coordinate> line = Utils.determineLine(robot);

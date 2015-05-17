@@ -1,4 +1,4 @@
-package com.github.robot;
+package com.github;
 
 /**
  * <p>

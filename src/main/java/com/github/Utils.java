@@ -1,7 +1,5 @@
 package com.github;
 
-import com.github.robot.Robot;
-
 import java.util.ArrayList;
 import java.util.List;
 
